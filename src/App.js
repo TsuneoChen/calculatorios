@@ -1,28 +1,28 @@
 import React, { useState } from 'react';
 
 const App = () => {
-  const [displayValue, setDisplayValue] = useState('0');
+  const [displayValue, sedivisplayValue] = useState('0');
   const [firstOperand, setFirstOperand] = useState(null);
   const [operator, setOperator] = useState(null);
   const [waitingForSecondOperand, setWaitingForSecondOperand] = useState(false);
 
-  const inputDigit = (digit) => {
+  const inpudivigit = (digit) => {
     if (waitingForSecondOperand) {
-      setDisplayValue(digit);
+      sedivisplayValue(digit);
       setWaitingForSecondOperand(false);
     } else {
-      setDisplayValue(displayValue === '0' ? digit : displayValue + digit);
+      sedivisplayValue(displayValue === '0' ? digit : displayValue + digit);
     }
   };
 
-  const inputDecimal = () => {
+  const inpudivecimal = () => {
     if (!displayValue.includes('.')) {
-      setDisplayValue(displayValue + '.');
+      sedivisplayValue(displayValue + '.');
     }
   };
 
   const clearDisplay = () => {
-    setDisplayValue('0');
+    sedivisplayValue('0');
     setFirstOperand(null);
     setOperator(null);
     setWaitingForSecondOperand(false);
@@ -35,7 +35,7 @@ const App = () => {
       setFirstOperand(inputValue);
     } else if (operator) {
       const result = calculate(firstOperand, inputValue, operator);
-      setDisplayValue(String(result));
+      sedivisplayValue(String(result));
       setFirstOperand(result);
     }
 
@@ -64,46 +64,42 @@ const App = () => {
 
   return (
     <body>
-      <section>
+      <div className='section'>
       <div className="container">
-
-      {/*PANEL*/}
-      <div className="panel"><p>{displayValue}</p></div>
-
-      {/*BUTTON*/}
-      <table>
-        <tr>
-          <td><button id='ac' className='btn special' onClick={clearDisplay}>AC</button></td>
-          <td><button id='sign' className='btn special' onClick={() => performOperation('$')}>+/-</button></td>
-          <td><button id='percentage' className='btn special' onClick={() => performOperation('%')}>%</button></td>
-          <td><button id='division' className='btn operator' onClick={() => performOperation('/')}>/</button></td>
-        </tr>
-        <tr>
-          <td><button id='seven' className='btn number' onClick={() => inputDigit('7')}>7</button></td>
-          <td><button id='eight' className='btn number' onClick={() => inputDigit('8')}>8</button></td>
-          <td><button id='nine' className='btn number' onClick={() => inputDigit('9')}>9</button></td>
-          <td><button id='multipliction' className='btn operator' onClick={() => performOperation('*')}>X</button></td>
-        </tr>
-        <tr>
-          <td><button id='four' className='btn number' onClick={() => inputDigit('4')}>4</button></td>
-          <td><button id='five' className='btn number' onClick={() => inputDigit('5')}>5</button></td>
-          <td><button id='six' className='btn number' onClick={() => inputDigit('6')}>6</button></td>
-          <td><button id='subtracion' className='btn operator' onClick={() => performOperation('+')}>+</button></td>
-        </tr>
-        <tr>
-          <td><button id='one' className='btn number' onClick={() => inputDigit('1')}>1</button></td>
-          <td><button id='two' className='btn number' onClick={() => inputDigit('2')}>2</button></td>
-          <td><button id='three' className='btn number' onClick={() => inputDigit('3')}>3</button></td>
-          <td><button id='addition' className='btn operator' onClick={() => performOperation('-')}>-</button></td>
-        </tr>
-        <tr>
-          <td colSpan={2}><button id='zero' className='btn number' onClick={() => inputDigit('0')}><p>0</p></button></td>
-          <td><button id='point' className='btn decimal' onClick={() => inputDecimal()}>.</button></td>
-          <td><button id='equal' className='btn operator' onClick={() => performOperation('=')}>=</button></td>
-        </tr>
-      </table>
+        <div className="panel">
+          <p>{displayValue}</p>
+        </div>
+        <div className='row'>
+          <div className='bt'><button id='ac' className='btn special' onClick={clearDisplay}>AC</button></div>
+          <div className='bt'><button id='sign' className='btn special' onClick={() => performOperation('$')}>+/-</button></div>
+          <div className='bt'><button id='percentage' className='btn special' onClick={() => performOperation('%')}>%</button></div>
+          <div className='bt'><button id='division' className='btn operator' onClick={() => performOperation('/')}>/</button></div>
+        </div>
+        <div className='row'>
+          <div className='bt'><button id='seven' className='btn number' onClick={() => inpudivigit('7')}>7</button></div>
+          <div className='bt'><button id='eight' className='btn number' onClick={() => inpudivigit('8')}>8</button></div>
+          <div className='bt'><button id='nine' className='btn number' onClick={() => inpudivigit('9')}>9</button></div>
+          <div className='bt'><button id='multipliction' className='btn operator' onClick={() => performOperation('*')}>X</button></div>
+        </div>
+        <div className='row'>
+          <div className='bt'><button id='four' className='btn number' onClick={() => inpudivigit('4')}>4</button></div>
+          <div className='bt'><button id='five' className='btn number' onClick={() => inpudivigit('5')}>5</button></div>
+          <div className='bt'><button id='six' className='btn number' onClick={() => inpudivigit('6')}>6</button></div>
+          <div className='bt'><button id='subtracion' className='btn operator' onClick={() => performOperation('+')}>+</button></div>
+        </div>
+        <div className='row'>
+          <div className='bt'><button id='one' className='btn number' onClick={() => inpudivigit('1')}>1</button></div>
+          <div className='bt'><button id='two' className='btn number' onClick={() => inpudivigit('2')}>2</button></div>
+          <div className='bt'><button id='three' className='btn number' onClick={() => inpudivigit('3')}>3</button></div>
+          <div className='bt'><button id='addition' className='btn operator' onClick={() => performOperation('-')}>-</button></div>
+        </div>
+        <div className='row'>
+          <div colSpan={2} className='bt'><button id='zero' className='btn number' onClick={() => inpudivigit('0')}><p>0</p></button></div>
+          <div className='bt'><button id='point' className='btn decimal' onClick={() => inpudivecimal()}>.</button></div>
+          <div className='bt'><button id='equal' className='btn operator' onClick={() => performOperation('=')}>=</button></div>
+        </div>
     </div>
-    </section>
+    </div>
     </body> 
   );
 };
